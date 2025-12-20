@@ -41,28 +41,34 @@ public class PolicyController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Policy> getAllPolicy(@PathVariable Integer id) {
+    public ResponseEntity<Policy> getPolicyById(@PathVariable Integer id) {
         Policy response = policyService.getPolicyById(id);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("add")
+    @GetMapping("customer/{id}")
+    public ResponseEntity<List<Policy>> getPolicyByCustomerId(@Valid @PathVariable("id") Integer customerId) {
+        List<Policy> response = policyService.getPolicyByCustomerId(customerId);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
     public ResponseEntity<CreatePolicyResponse> createPolicy(@Valid @RequestBody CreatePolicyRquest requestBody,
             HttpServletRequest request) {
 
-        String authHeader = request.getHeader("Authorization");
-        String token = authHeader.substring(7);
-        Claims claims = jwtUtil.extractAllClaims(token);
-        Integer customerId = claims.get("customerId", Integer.class);
+        // String authHeader = request.getHeader("Authorization");
+        // String token = authHeader.substring(7);
+        // Claims claims = jwtUtil.extractAllClaims(token);
+        // Integer customerId = claims.get("customerId", Integer.class);
 
-        System.out.println("------ checking input data create policy ---------");
-        System.out.print("customerId => ");
-        System.out.println(customerId);
-        System.out.println("request body : ");
-        System.out.println(requestBody);
-        System.out.println("------ checking input data create policy end ---------");
+        // System.out.println("------ checking input data create policy ---------");
+        // System.out.print("customerId => ");
+        // System.out.println(customerId);
+        // System.out.println("request body : ");
+        // System.out.println(requestBody);
+        // System.out.println("------ checking input data create policy end ---------");
 
-        CreatePolicyResponse response = policyService.ceratePolicy(customerId, requestBody);
+        CreatePolicyResponse response = policyService.ceratePolicy( requestBody);
 
         // return
         // return null;

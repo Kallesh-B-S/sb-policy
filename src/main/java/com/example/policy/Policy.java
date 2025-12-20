@@ -23,9 +23,11 @@ public class Policy {
     private String policyNumber;
     
     private String policyName;
-    private String policyType;
+    
+    private Integer automobileID;
 
-    private Integer customer_id;
+    @Column(name = "customer_id")
+    private Integer customerId;
 
     private BigDecimal premiumAmount;
     private BigDecimal coverageAmount;

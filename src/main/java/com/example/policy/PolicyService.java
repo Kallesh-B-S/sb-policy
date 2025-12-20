@@ -20,14 +20,15 @@ public class PolicyService {
     @Autowired
     PolicyDao policyDao;
 
-    public CreatePolicyResponse ceratePolicy(Integer customerId, CreatePolicyRquest requestBody) {
+    public CreatePolicyResponse ceratePolicy( CreatePolicyRquest requestBody) {
 
         Policy policy = new Policy();
 
         policy.setPolicyNumber(UUID.randomUUID().toString().replace("-", ""));
         policy.setPolicyName(requestBody.getPolicyName());
-        policy.setPolicyType(requestBody.getPolicyType());
-        policy.setCustomer_id(customerId);
+        policy.setAutomobileID(requestBody.getAutomobileID());
+        policy.setCustomerId(requestBody.getCustomerId());
+        // policy.setCustomerId(customerId);
         policy.setPremiumAmount(requestBody.getPremiumAmount());
         policy.setCoverageAmount(requestBody.getCoverageAmount());
         policy.setStartDate(requestBody.getStartDate());
@@ -58,5 +59,9 @@ public class PolicyService {
     public Policy getPolicyById(int id) {
         return policyDao.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("No Data Found for provided id : " + id));
+    }
+
+    public List<Policy> getPolicyByCustomerId(Integer customerId) {
+        return policyDao.findByCustomerId(customerId);
     }
 }

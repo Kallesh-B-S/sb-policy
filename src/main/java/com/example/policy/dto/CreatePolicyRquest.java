@@ -18,11 +18,11 @@ public class CreatePolicyRquest {
     @NotBlank(message = "Policy name is required")
     private String policyName;
 
-    @NotBlank(message = "Policy type is required")
-    private String policyType;
+    @NotNull(message = "Automobile ID is required")
+    private Integer automobileID;
 
-    // @NotNull(message = "Customer ID is required")
-    // private Integer customerId;
+    @NotNull(message = "Customer ID is required")
+    private Integer customerId;
 
     @NotNull(message = "Premium amount is required")
     @Positive(message = "Premium amount must be greater than zero")
