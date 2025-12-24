@@ -19,7 +19,7 @@ public class Policy {
     @Column(name = "policy_id")
     private Integer id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String policyNumber;
     
     private String policyName;

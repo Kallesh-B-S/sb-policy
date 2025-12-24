@@ -20,6 +20,8 @@ import jakarta.validation.constraints.NotNull;
 
 import org.springframework.web.client.RestTemplate;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 public class PolicyService {
 
@@ -29,11 +31,12 @@ public class PolicyService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Transactional
     public CreatePolicyResponse ceratePolicy(CreatePolicyRquest requestBody) {
 
         Policy policy = new Policy();
 
-        policy.setPolicyNumber(UUID.randomUUID().toString().replace("-", ""));
+        // policy.setPolicyNumber(UUID.randomUUID().toString().replace("-", ""));
         policy.setPolicyName(requestBody.getPolicyName());
         policy.setAutomobileID(requestBody.getAutomobileID());
         policy.setCustomerId(requestBody.getCustomerId());
@@ -45,6 +48,11 @@ public class PolicyService {
         policy.setStatus("ACTIVE");
 
         Policy savedPolicy = policyDao.save(policy);
+
+        String generatedPolicyNumber = "POL-" + savedPolicy.getId();
+        savedPolicy.setPolicyNumber(generatedPolicyNumber);
+
+        policyDao.save(savedPolicy);
 
         return new CreatePolicyResponse(savedPolicy.getId(), "Policy Added Successfully");
     }
