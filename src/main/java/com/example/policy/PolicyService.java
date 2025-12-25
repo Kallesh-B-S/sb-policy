@@ -46,6 +46,8 @@ public class PolicyService {
         policy.setStartDate(requestBody.getStartDate());
         policy.setEndDate(requestBody.getEndDate());
         policy.setStatus("ACTIVE");
+        policy.setPremiumFrequency(requestBody.getPremiumFrequency());
+        policy.setRenewalDate(requestBody.getRenewalDate());
 
         Policy savedPolicy = policyDao.save(policy);
 
@@ -114,6 +116,8 @@ public class PolicyService {
         String url = "http://localhost:8766/customer/automobile/" + policy.getAutomobileID();
 
         Automobile automobile = restTemplate.getForObject(url, Automobile.class);
+
+        System.out.println(automobile);
 
         PolicyWithAutomobileResponse response = new PolicyWithAutomobileResponse();
         response.setPolicy(policy);

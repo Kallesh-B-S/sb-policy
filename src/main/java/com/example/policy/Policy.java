@@ -30,10 +30,12 @@ public class Policy {
     private Integer customerId;
 
     private BigDecimal premiumAmount;
+    private String premiumFrequency;
     private BigDecimal coverageAmount;
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private LocalDate renewalDate;
 
     private String status; // ACTIVE, EXPIRED, CANCELLED
 }

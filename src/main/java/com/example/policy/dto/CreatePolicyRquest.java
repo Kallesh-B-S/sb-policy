@@ -28,6 +28,9 @@ public class CreatePolicyRquest {
     @Positive(message = "Premium amount must be greater than zero")
     private BigDecimal premiumAmount;
 
+    @NotBlank(message = "Premium Frequency is required")
+    private String premiumFrequency;
+
     @NotNull(message = "Coverage amount is required")
     @Positive(message = "Coverage amount must be greater than zero")
     private BigDecimal coverageAmount;
@@ -38,6 +41,9 @@ public class CreatePolicyRquest {
 
     @NotNull(message = "End date is required")
     private LocalDate endDate;
+
+    @NotNull(message = "Renewal date is required")
+    private LocalDate renewalDate;
 
     // @NotBlank(message = "Status is required")
     // private String status; // ACTIVE, EXPIRED, CANCELLED

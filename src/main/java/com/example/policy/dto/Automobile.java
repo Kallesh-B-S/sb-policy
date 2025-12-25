@@ -21,6 +21,10 @@ public class Automobile {
 
     private String year;
 
+    private String licensePlateNumber;
+
+    private String vehicleIdentificationNumber;
+
     @Embedded
     private PreviousInsurance previousInsurance;
 }
